@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index']);
 
 Route::apiResource('/leaves', '\App\Http\Controllers\LeavesController');
+
+Route::apiResource('/webuser', '\App\Http\Controllers\WebUserController');
+
+Route::post('/login', [WebUserController::class,'login']);
