@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateWebUserRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -30,6 +31,8 @@ class WebUserController extends Controller
      * @param Request $request
      * @return JsonResponse|Response
      */
+
+    //Response|JsonResponse is the return type
     public function login(Request $request): Response|JsonResponse
     {
         $user  = WebUser::where('email',$request['email'])->first();
@@ -38,6 +41,7 @@ class WebUserController extends Controller
             return response()->json(['error'=>'Incorrect Password'],500);
         }
         else {
+            Auth::login($user);
             return response()->json(['data'=>$user]);
         }
     }

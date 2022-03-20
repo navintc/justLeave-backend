@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HRdata;
 use App\Models\Leaves;
+
 use App\Http\Requests\StoreLeavesRequest;
 use App\Http\Requests\UpdateLeavesRequest;
 use App\Models\product;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeavesController extends Controller
 {
@@ -26,9 +31,15 @@ class LeavesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        dd($request);
+        $query= Leaves::insert(['userID' => $request['userID'], 'leaveType' => $request['leaveType'], 'leaveDate' => $request['leaveDate'],'status' => 0]);
+        return response()->json(['success'=>'updated!']);
+
+//        $query= Leaves::insert(['userID' => 2, 'leaveType' => 2, 'leaveDate' => 2022-05-1,'status' => 0]);
+//        return response()->json(['success'=>'updated!']);
 
     }
 
@@ -40,7 +51,7 @@ class LeavesController extends Controller
      */
     public function store(StoreLeavesRequest $request)
     {
-        //
+
     }
 
     /**
@@ -76,7 +87,25 @@ class LeavesController extends Controller
      */
     public function update(UpdateLeavesRequest $request, Leaves $leaves)
     {
-        //
+
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateLeaveStatus(Request $request): JsonResponse
+    {
+        $query= Leaves::where('id', $request['leaveID'])
+            ->update(['status' => $request['statusUpdate']]);
+        return response()->json(['success'=>'updated!']);
+    }
+
+    public function addLeave(Request $request)
+    {
+        //dd($request);
+        $query= Leaves::insert(['userID' => $request['userID'], 'leaveType' => $request['leaveType'], 'leaveDate' => $request['leaveDate'],'status' => 0]);
+        return response()->json(['success'=>'updated!']);
     }
 
     /**

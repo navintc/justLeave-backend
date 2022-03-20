@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebUserController;
+use App\Http\Controllers\LeavesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,7 @@ Route::apiResource('/leaves', '\App\Http\Controllers\LeavesController');
 Route::apiResource('/webuser', '\App\Http\Controllers\WebUserController');
 
 Route::post('/login', [WebUserController::class,'login']);
+
+Route::patch('/leaves', [LeavesController::class,'updateLeaveStatus']);
+
+Route::post('/addleave', [LeavesController::class,'addLeave']);

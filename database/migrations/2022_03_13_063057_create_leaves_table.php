@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->string('leaveID');
             $table->string('userID');
             $table->integer('leaveType');
             $table->date('leaveDate');
             $table->integer('status');
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
