@@ -35,4 +35,7 @@ Route::patch('/leaves', [LeavesController::class,'updateLeaveStatus']);
 
 Route::post('/addleave', [LeavesController::class,'addLeave']);
 
+Route::post('/signup', [WebUserController::class,'signup']);
+
+
 

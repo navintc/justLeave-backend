@@ -50,7 +50,7 @@ class WebUserController extends Controller
 
     public function signup(Request $request){
         //dd($request);
-        $query= WebUser::insert(['name' => $request['name'], 'email' => $request['email'], 'password' => Hash::make($request['leaveDate']),'userType' => 1]);
+        $query= WebUser::insert(['name' => $request['name'], 'email' => $request['email'], 'password' => Hash::make($request['password']),'userType' => 1]);
         return response()->json(['success'=>'updated!']);
     }
 
