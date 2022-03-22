@@ -34,3 +34,5 @@ Route::post('/login', [WebUserController::class,'login']);
 Route::patch('/leaves', [LeavesController::class,'updateLeaveStatus']);
 
 Route::post('/addleave', [LeavesController::class,'addLeave']);
+
+

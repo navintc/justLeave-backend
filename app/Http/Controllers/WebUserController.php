@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Leaves;
 use App\Models\User;
 use App\Models\WebUser;
 use App\Http\Requests\StoreWebUserRequest;
@@ -44,6 +45,13 @@ class WebUserController extends Controller
             Auth::login($user);
             return response()->json(['data'=>$user]);
         }
+    }
+
+
+    public function signup(Request $request){
+        //dd($request);
+        $query= WebUser::insert(['name' => $request['name'], 'email' => $request['email'], 'password' => Hash::make($request['leaveDate']),'userType' => 1]);
+        return response()->json(['success'=>'updated!']);
     }
 
     /**
